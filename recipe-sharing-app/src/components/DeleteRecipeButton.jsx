@@ -1,25 +1,20 @@
-import useRecipeStore from "../store/useRecipeStore";
+import React from 'react';
+import useRecipeStore from '../store/useRecipeStore';
 
-const DeleteRecipe = () => {
-  const { recipes, deleteRecipe} = useRecipeStore();
+const DeleteRecipeButton = ({ recipeId }) => {
+  const deleteRecipe = useRecipeStore(state => state.deleteRecipe);
 
-
-
-  const handleDelete = (id) => {
-    deleteRecipe(id);
+  const handleDelete = () => {
+    if (window.confirm('Are you sure you want to delete this recipe?')) {
+      deleteRecipe(recipeId);
+    }
   };
 
   return (
-    <div>
-      {recipes.map((recipe) => (
-        <div key={recipe.id}>
-          <h3>{recipe.title}</h3>
-          <p>{recipe.description}</p>
-          <button onClick={() => handleDelete(recipe.id)}>Delete</button>
-        </div>
-      ))}
-    </div>
+    <button onClick={handleDelete}>
+      Delete Recipe
+    </button>
   );
 };
 
-export default DeleteRecipe;
+export default DeleteRecipeButton;
