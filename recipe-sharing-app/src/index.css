@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #fff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -42,7 +42,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #003381;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -52,6 +52,29 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+input{
+  background-color: #fff;
+  color: black;
+}
+
+textarea{
+  background-color: #fff;
+  color: black;
+}
+.recipe-list{
+  background-color: #003381;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  margin-bottom: 2rem;
+}
+.add-form{
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+   margin-bottom: 2rem;
 }
 
 @media (prefers-color-scheme: light) {
