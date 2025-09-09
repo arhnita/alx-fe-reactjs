@@ -18,6 +18,7 @@ const useRecipeStore = create((set) => ({
       ),
     })),
     // Search functionality
+    searchTerm: '',
   setSearchTerm: (term) => set({ searchTerm: term }),
   
   filterRecipes: () => set(state => ({
