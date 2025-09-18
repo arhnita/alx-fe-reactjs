@@ -1,11 +1,10 @@
 import './App.css'
+import Header from './components/Header'
 
 function App() {
   return (
     <div className="App">
-      <header className="app-header">
-        <h1>GitHub User Search</h1>
-      </header>
+      <Header />
       <main className="app-main">
         {/* GitHub user search components will go here */}
       </main>
