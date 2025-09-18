@@ -22,12 +22,49 @@ const githubService = {
     }
   },
 
-  searchUsers: async (username) => {
+  searchUsers: async (searchParams) => {
     try {
-      const response = await axiosInstance.get(`/search/users?q=${encodeURIComponent(username)}`);
+      let query = '';
+
+      if (searchParams.username) {
+        query += searchParams.username;
+      }
+
+      if (searchParams.location) {
+        query += ` location:${searchParams.location}`;
+      }
+
+      if (searchParams.minRepos) {
+        query += ` repos:>=${searchParams.minRepos}`;
+      }
+
+      const params = {
+        q: query.trim(),
+        per_page: searchParams.perPage || 30,
+        page: searchParams.page || 1
+      };
+
+      const response = await axiosInstance.get('/search/users', { params });
       return response.data;
     } catch (error) {
       console.error('Error searching users:', error);
+      throw error;
+    }
+  },
+
+  advancedSearchUsers: async (searchCriteria) => {
+    try {
+      const { username, location, minRepos, page = 1 } = searchCriteria;
+
+      let query = '';
+      if (username) query += username;
+      if (location) query += ` location:${location}`;
+      if (minRepos) query += ` repos:>=${minRepos}`;
+
+      const response = await axiosInstance.get(`/search/users?q=${encodeURIComponent(query.trim())}&page=${page}&per_page=30`);
+      return response.data;
+    } catch (error) {
+      console.error('Error in advanced search:', error);
       throw error;
     }
   },

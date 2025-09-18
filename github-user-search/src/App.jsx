@@ -4,9 +4,9 @@ import Search from './components/Search'
 
 function App() {
   return (
-    <div className="App">
+    <div className="min-h-screen">
       <Header />
-      <main className="app-main">
+      <main className="py-8">
         <Search />
       </main>
     </div>
