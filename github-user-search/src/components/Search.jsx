@@ -1,6 +1,35 @@
 import { useState } from 'react';
 import githubService from '../services/githubService';
 
+const AvatarWithFallback = ({ user }) => {
+  const [imageError, setImageError] = useState(false);
+
+  const getInitials = (name, login) => {
+    if (name) {
+      return name.split(' ').map(word => word.charAt(0)).join('').toUpperCase().slice(0, 2);
+    }
+    return login.charAt(0).toUpperCase();
+  };
+
+  if (imageError) {
+    return (
+      <div className="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg border-2 border-gray-200">
+        {getInitials(user.name, user.login)}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={user.avatar_url}
+      alt={`${user.login}'s avatar`}
+      className="w-16 h-16 rounded-full object-cover border-2 border-gray-200"
+      onError={() => setImageError(true)}
+      referrerPolicy="no-referrer"
+    />
+  );
+};
+
 function Search() {
   const [searchCriteria, setSearchCriteria] = useState({
     username: '',
@@ -175,11 +204,7 @@ function Search() {
             {searchResults.items.map((user) => (
               <div key={user.id} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
                 <div className="flex items-center space-x-4 mb-4">
-                  <img
-                    src={user.avatar_url}
-                    alt={`${user.login}'s avatar`}
-                    className="w-16 h-16 rounded-full object-cover"
-                  />
+                  <AvatarWithFallback user={user} />
                   <div className="flex-1 min-w-0">
                     <h4 className="text-lg font-semibold text-gray-900 truncate">
                       {user.name || user.login}
