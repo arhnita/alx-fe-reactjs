@@ -43,7 +43,8 @@ function Search() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const name = e.target.name;
+    const value = e.target.value;
     setSearchCriteria(prev => ({
       ...prev,
       [name]: value
