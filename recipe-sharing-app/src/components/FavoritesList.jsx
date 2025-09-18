@@ -2,7 +2,7 @@ import React from 'react';
 import useRecipeStore from './recipeStore';
 
 const FavoritesList = () => {
-  const favorites = useRecipeStore(state => state.favorites);
+  const favorites = useRecipeStore(state => state.favorites || []);
   const recipes = useRecipeStore(state => state.recipes);
   
   const favoriteRecipes = favorites.map(id =>

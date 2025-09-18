@@ -7,7 +7,7 @@ const RecipeDetails = ({ recipeId }) => {
   const recipe = useRecipeStore(state =>
     state.recipes.find(recipe => recipe.id === recipeId)
   );
-  const favorites = useRecipeStore(state => state.favorites);
+  const favorites = useRecipeStore(state => state.favorites || []);
   const addFavorite = useRecipeStore(state => state.addFavorite);
   const removeFavorite = useRecipeStore(state => state.removeFavorite);
 

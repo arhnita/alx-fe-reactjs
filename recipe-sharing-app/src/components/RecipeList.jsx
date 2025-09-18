@@ -6,11 +6,11 @@ const RecipeList = () => {
   const recipes = useRecipeStore(state => state.recipes);
   const filteredRecipes = useRecipeStore(state => state.filteredRecipes);
   const searchTerm = useRecipeStore(state => state.searchTerm);
-  const filterRecipes = useRecipeStore(state => state.filterRecipes);
+  const filterRecipes = useRecipeStore(state => state.filterRecipes || []);
 
   useEffect(() => {
     filterRecipes();
-  }, [searchTerm, recipes, filterRecipes]);
+  }, [searchTerm, recipes]);
 
   const recipesToDisplay = searchTerm ? filteredRecipes : recipes;
 
