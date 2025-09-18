@@ -61,7 +61,7 @@ const githubService = {
       if (location) query += ` location:${location}`;
       if (minRepos) query += ` repos:>=${minRepos}`;
 
-      const response = await axiosInstance.get(`/search/users?q=${encodeURIComponent(query.trim())}&page=${page}&per_page=30`);
+      const response = await axiosInstance.get(`https://api.github.com/search/users?q=${encodeURIComponent(query.trim())}&page=${page}&per_page=30`);
       return response.data;
     } catch (error) {
       console.error('Error in advanced search:', error);
