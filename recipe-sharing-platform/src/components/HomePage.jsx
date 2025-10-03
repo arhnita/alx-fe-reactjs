@@ -1,14 +1,7 @@
 import { useState, useEffect } from 'react';
 
-interface Recipe {
-  id: number;
-  title: string;
-  summary: string;
-  image: string;
-}
-
 const HomePage = () => {
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
     // Load recipe data from data.json
