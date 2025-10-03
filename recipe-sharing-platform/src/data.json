@@ -3,36 +3,155 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "400g spaghetti",
+      "200g pancetta or bacon, diced",
+      "4 large eggs",
+      "100g Pecorino Romano cheese, grated",
+      "Black pepper to taste",
+      "Salt for pasta water"
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to boil and cook spaghetti according to package directions.",
+      "While pasta cooks, fry pancetta in a large skillet until crispy.",
+      "In a bowl, whisk together eggs, grated cheese, and black pepper.",
+      "Reserve 1 cup of pasta water, then drain the spaghetti.",
+      "Add hot pasta to the skillet with pancetta, remove from heat.",
+      "Quickly stir in egg mixture, adding pasta water as needed to create a creamy sauce.",
+      "Serve immediately with extra cheese and black pepper."
+    ]
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "800g boneless chicken, cubed",
+      "1 cup yogurt",
+      "2 tbsp tikka masala spice blend",
+      "3 tbsp butter",
+      "1 onion, finely chopped",
+      "4 cloves garlic, minced",
+      "1 tbsp ginger, grated",
+      "400g tomato puree",
+      "1 cup heavy cream",
+      "Fresh cilantro for garnish"
+    ],
+    "instructions": [
+      "Marinate chicken in yogurt and half the spice blend for at least 1 hour.",
+      "Grill or pan-fry marinated chicken until cooked through. Set aside.",
+      "In a large pan, melt butter and sauté onions until golden.",
+      "Add garlic, ginger, and remaining spices. Cook for 1 minute.",
+      "Stir in tomato puree and simmer for 10 minutes.",
+      "Add cream and cooked chicken. Simmer for 5 minutes.",
+      "Garnish with cilantro and serve with rice or naan."
+    ]
   },
   {
     "id": 3,
     "title": "Caesar Salad",
     "summary": "A green salad of romaine lettuce and croutons dressed with lemon juice, olive oil, egg, Worcestershire sauce, anchovies, garlic, Dijon mustard, Parmesan cheese, and black pepper.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "2 heads romaine lettuce, chopped",
+      "1 cup croutons",
+      "1/2 cup Parmesan cheese, shaved",
+      "2 anchovy fillets",
+      "2 cloves garlic",
+      "1 egg yolk",
+      "2 tbsp lemon juice",
+      "1 tsp Dijon mustard",
+      "1/2 cup olive oil",
+      "Worcestershire sauce to taste"
+    ],
+    "instructions": [
+      "Make the dressing: mash anchovies and garlic into a paste.",
+      "Whisk in egg yolk, lemon juice, Dijon mustard, and Worcestershire sauce.",
+      "Slowly drizzle in olive oil while whisking to emulsify.",
+      "Toss chopped romaine lettuce with the dressing.",
+      "Add croutons and toss again.",
+      "Top with shaved Parmesan cheese.",
+      "Serve immediately while crisp."
+    ]
   },
   {
     "id": 4,
     "title": "Beef Tacos",
     "summary": "Crispy or soft tortillas filled with seasoned ground beef, lettuce, cheese, and salsa.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "500g ground beef",
+      "1 onion, diced",
+      "2 cloves garlic, minced",
+      "2 tbsp taco seasoning",
+      "8 taco shells or tortillas",
+      "Shredded lettuce",
+      "Shredded cheddar cheese",
+      "Diced tomatoes",
+      "Sour cream",
+      "Salsa"
+    ],
+    "instructions": [
+      "In a skillet, cook ground beef over medium heat until browned.",
+      "Add diced onion and garlic, cook until softened.",
+      "Stir in taco seasoning and 1/4 cup water. Simmer for 5 minutes.",
+      "Warm taco shells according to package directions.",
+      "Fill each shell with seasoned beef.",
+      "Top with lettuce, cheese, tomatoes, sour cream, and salsa.",
+      "Serve immediately and enjoy!"
+    ]
   },
   {
     "id": 5,
     "title": "Margherita Pizza",
     "summary": "A simple pizza topped with tomatoes, mozzarella cheese, fresh basil, salt and extra-virgin olive oil.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "1 pizza dough ball",
+      "1/2 cup tomato sauce",
+      "200g fresh mozzarella, sliced",
+      "Fresh basil leaves",
+      "2 tbsp olive oil",
+      "Salt to taste",
+      "Flour for dusting"
+    ],
+    "instructions": [
+      "Preheat oven to 475°F (245°C) with pizza stone if available.",
+      "Roll out pizza dough on floured surface to desired thickness.",
+      "Spread tomato sauce evenly over the dough, leaving a border.",
+      "Arrange mozzarella slices on top of the sauce.",
+      "Drizzle with olive oil and sprinkle with salt.",
+      "Bake for 12-15 minutes until crust is golden and cheese is bubbly.",
+      "Remove from oven, top with fresh basil leaves, and serve."
+    ]
   },
   {
     "id": 6,
     "title": "Chocolate Cake",
     "summary": "A rich, moist chocolate cake topped with creamy chocolate frosting.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "2 cups all-purpose flour",
+      "2 cups sugar",
+      "3/4 cup cocoa powder",
+      "2 tsp baking soda",
+      "1 tsp salt",
+      "2 eggs",
+      "1 cup buttermilk",
+      "1 cup vegetable oil",
+      "1 cup hot coffee",
+      "Chocolate frosting"
+    ],
+    "instructions": [
+      "Preheat oven to 350°F (175°C). Grease and flour two 9-inch cake pans.",
+      "Mix flour, sugar, cocoa, baking soda, and salt in a large bowl.",
+      "Add eggs, buttermilk, and oil. Beat on medium speed for 2 minutes.",
+      "Stir in hot coffee (batter will be thin).",
+      "Pour batter evenly into prepared pans.",
+      "Bake for 30-35 minutes until a toothpick comes out clean.",
+      "Cool completely, then frost with chocolate frosting."
+    ]
   }
 ]
