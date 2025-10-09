@@ -1,6 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen, fireEvent } from "@testing-library/react";
 import AddTodoForm from "../components/AddTodoForm";
 
 describe("AddTodoForm Component", () => {
@@ -14,43 +13,40 @@ describe("AddTodoForm Component", () => {
     expect(screen.getByText("Add Todo")).toBeInTheDocument();
   });
 
-  test("calls onAddTodo with correct text when form is submitted", async () => {
+  test("calls onAddTodo with correct text when form is submitted", () => {
     const mockOnAddTodo = jest.fn();
-    const user = userEvent.setup();
     render(<AddTodoForm onAddTodo={mockOnAddTodo} />);
 
     const input = screen.getByPlaceholderText("Add a new todo...");
     const submitButton = screen.getByText("Add Todo");
 
-    await user.type(input, "Test Todo");
-    await user.click(submitButton);
+    fireEvent.change(input, { target: { value: "Test Todo" } });
+    fireEvent.click(submitButton);
 
     expect(mockOnAddTodo).toHaveBeenCalledWith("Test Todo");
     expect(input).toHaveValue("");
   });
 
-  test("does not call onAddTodo when input is empty", async () => {
+  test("does not call onAddTodo when input is empty", () => {
     const mockOnAddTodo = jest.fn();
-    const user = userEvent.setup();
     render(<AddTodoForm onAddTodo={mockOnAddTodo} />);
 
     const submitButton = screen.getByText("Add Todo");
 
-    await user.click(submitButton);
+    fireEvent.click(submitButton);
 
     expect(mockOnAddTodo).not.toHaveBeenCalled();
   });
 
-  test("trims whitespace from input", async () => {
+  test("trims whitespace from input", () => {
     const mockOnAddTodo = jest.fn();
-    const user = userEvent.setup();
     render(<AddTodoForm onAddTodo={mockOnAddTodo} />);
 
     const input = screen.getByPlaceholderText("Add a new todo...");
     const submitButton = screen.getByText("Add Todo");
 
-    await user.type(input, "  Test Todo  ");
-    await user.click(submitButton);
+    fireEvent.change(input, { target: { value: "  Test Todo  " } });
+    fireEvent.click(submitButton);
 
     expect(mockOnAddTodo).toHaveBeenCalledWith("  Test Todo  ");
   });
