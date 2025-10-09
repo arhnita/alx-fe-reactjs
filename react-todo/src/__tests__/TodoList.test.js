@@ -1,10 +1,9 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen, fireEvent } from "@testing-library/react";
 import TodoList from "../components/TodoList";
 
 describe("TodoList Component", () => {
-  // Test 1: Initial Render Test
+  // Write Initial Render Test: Verify that the TodoList component renders correctly
   test("renders TodoList component correctly", () => {
     render(<TodoList />);
 
@@ -17,7 +16,7 @@ describe("TodoList Component", () => {
     ).toBeInTheDocument();
     expect(screen.getByText("Add Todo")).toBeInTheDocument();
 
-    // Check if initial todos are rendered
+    // Ensure that the initial state (a few demo todos) is rendered
     expect(screen.getByText("Learn React")).toBeInTheDocument();
     expect(screen.getByText("Build a Todo App")).toBeInTheDocument();
     expect(screen.getByText("Write Tests")).toBeInTheDocument();
@@ -37,19 +36,18 @@ describe("TodoList Component", () => {
     expect(incompleteTodo2).toHaveStyle("text-decoration: none");
   });
 
-  // Test 2: Adding Todos
-  test("adds a new todo when form is submitted", async () => {
-    const user = userEvent.setup();
+  // Test Adding Todos: Use fireEvent to simulate user input and form submission
+  test("adds a new todo when form is submitted", () => {
     render(<TodoList />);
 
     const input = screen.getByPlaceholderText("Add a new todo...");
     const addButton = screen.getByText("Add Todo");
 
-    // Type in the input field
-    await user.type(input, "New Test Todo");
+    // Use fireEvent to simulate user input
+    fireEvent.change(input, { target: { value: "New Test Todo" } });
 
-    // Submit the form
-    await user.click(addButton);
+    // Use fireEvent to simulate form submission
+    fireEvent.click(addButton);
 
     // Check if the new todo is added
     expect(screen.getByText("New Test Todo")).toBeInTheDocument();
@@ -58,24 +56,22 @@ describe("TodoList Component", () => {
     expect(input).toHaveValue("");
   });
 
-  test("does not add empty todos", async () => {
-    const user = userEvent.setup();
+  test("does not add empty todos", () => {
     render(<TodoList />);
 
     const addButton = screen.getByText("Add Todo");
     const initialTodos = screen.getAllByText(/Delete/);
     const initialTodoCount = initialTodos.length;
 
-    // Try to submit empty form
-    await user.click(addButton);
+    // Try to submit empty form using fireEvent
+    fireEvent.click(addButton);
 
     // Check that no new todo was added
     const afterTodos = screen.getAllByText(/Delete/);
     expect(afterTodos).toHaveLength(initialTodoCount);
   });
 
-  test("does not add todos with only whitespace", async () => {
-    const user = userEvent.setup();
+  test("does not add todos with only whitespace", () => {
     render(<TodoList />);
 
     const input = screen.getByPlaceholderText("Add a new todo...");
@@ -83,18 +79,17 @@ describe("TodoList Component", () => {
     const initialTodos = screen.getAllByText(/Delete/);
     const initialTodoCount = initialTodos.length;
 
-    // Type only whitespace
-    await user.type(input, "   ");
-    await user.click(addButton);
+    // Type only whitespace using fireEvent
+    fireEvent.change(input, { target: { value: "   " } });
+    fireEvent.click(addButton);
 
     // Check that no new todo was added
     const afterTodos = screen.getAllByText(/Delete/);
     expect(afterTodos).toHaveLength(initialTodoCount);
   });
 
-  // Test 3: Toggling Todos
-  test("toggles todo completion status when clicked", async () => {
-    const user = userEvent.setup();
+  // Test Toggling Todos: Write a test to verify that a todo item can be toggled between completed and not completed
+  test("toggles todo completion status when clicked", () => {
     render(<TodoList />);
 
     const todoText = screen.getByText("Learn React");
@@ -102,21 +97,20 @@ describe("TodoList Component", () => {
     // Initially should not be completed
     expect(todoText).toHaveStyle("text-decoration: none");
 
-    // Click to toggle completion
-    await user.click(todoText);
+    // Use fireEvent to click and toggle completion
+    fireEvent.click(todoText);
 
     // Should now be completed
     expect(todoText).toHaveStyle("text-decoration: line-through");
 
-    // Click again to toggle back
-    await user.click(todoText);
+    // Click again to toggle back using fireEvent
+    fireEvent.click(todoText);
 
     // Should be back to incomplete
     expect(todoText).toHaveStyle("text-decoration: none");
   });
 
-  test("toggles already completed todo back to incomplete", async () => {
-    const user = userEvent.setup();
+  test("toggles already completed todo back to incomplete", () => {
     render(<TodoList />);
 
     const completedTodo = screen.getByText("Write Tests");
@@ -124,16 +118,15 @@ describe("TodoList Component", () => {
     // Initially should be completed
     expect(completedTodo).toHaveStyle("text-decoration: line-through");
 
-    // Click to toggle
-    await user.click(completedTodo);
+    // Use fireEvent to click and toggle
+    fireEvent.click(completedTodo);
 
     // Should now be incomplete
     expect(completedTodo).toHaveStyle("text-decoration: none");
   });
 
-  // Test 4: Deleting Todos
-  test("deletes a todo when delete button is clicked", async () => {
-    const user = userEvent.setup();
+  // Test Deleting Todos: Write a test to verify that a todo item can be deleted
+  test("deletes a todo when delete button is clicked", () => {
     render(<TodoList />);
 
     // Find the todo and its delete button
@@ -143,8 +136,8 @@ describe("TodoList Component", () => {
     // Find the delete button for this todo (it's the sibling button)
     const deleteButtons = screen.getAllByText("Delete");
 
-    // Click the first delete button (for "Learn React")
-    await user.click(deleteButtons[0]);
+    // Use fireEvent to click the first delete button (for "Learn React")
+    fireEvent.click(deleteButtons[0]);
 
     // Check that the todo is no longer in the document
     expect(screen.queryByText("Learn React")).not.toBeInTheDocument();
@@ -154,14 +147,13 @@ describe("TodoList Component", () => {
     expect(screen.getByText("Write Tests")).toBeInTheDocument();
   });
 
-  test("deletes the correct todo when multiple todos exist", async () => {
-    const user = userEvent.setup();
+  test("deletes the correct todo when multiple todos exist", () => {
     render(<TodoList />);
 
-    // Add a new todo first
+    // Add a new todo first using fireEvent
     const input = screen.getByPlaceholderText("Add a new todo...");
-    await user.type(input, "Todo to Delete");
-    await user.click(screen.getByText("Add Todo"));
+    fireEvent.change(input, { target: { value: "Todo to Delete" } });
+    fireEvent.click(screen.getByText("Add Todo"));
 
     // Verify the new todo exists
     expect(screen.getByText("Todo to Delete")).toBeInTheDocument();
@@ -169,8 +161,8 @@ describe("TodoList Component", () => {
     // Get all delete buttons
     const deleteButtons = screen.getAllByText("Delete");
 
-    // Click the last delete button (for the newly added todo)
-    await user.click(deleteButtons[deleteButtons.length - 1]);
+    // Use fireEvent to click the last delete button (for the newly added todo)
+    fireEvent.click(deleteButtons[deleteButtons.length - 1]);
 
     // Check that the specific todo is deleted
     expect(screen.queryByText("Todo to Delete")).not.toBeInTheDocument();
@@ -181,15 +173,14 @@ describe("TodoList Component", () => {
     expect(screen.getByText("Write Tests")).toBeInTheDocument();
   });
 
-  test("shows empty state message when all todos are deleted", async () => {
-    const user = userEvent.setup();
+  test("shows empty state message when all todos are deleted", () => {
     render(<TodoList />);
 
-    // Delete all existing todos
+    // Delete all existing todos using fireEvent
     const deleteButtons = screen.getAllByText("Delete");
 
     for (const button of deleteButtons) {
-      await user.click(button);
+      fireEvent.click(button);
     }
 
     // Check for empty state message
@@ -199,33 +190,32 @@ describe("TodoList Component", () => {
   });
 
   // Integration Test: Full workflow
-  test("supports full todo workflow: add, toggle, and delete", async () => {
-    const user = userEvent.setup();
+  test("supports full todo workflow: add, toggle, and delete", () => {
     render(<TodoList />);
 
     const input = screen.getByPlaceholderText("Add a new todo...");
 
-    // Add a new todo
-    await user.type(input, "Integration Test Todo");
-    await user.click(screen.getByText("Add Todo"));
+    // Add a new todo using fireEvent
+    fireEvent.change(input, { target: { value: "Integration Test Todo" } });
+    fireEvent.click(screen.getByText("Add Todo"));
 
     // Verify todo was added
     const newTodo = screen.getByText("Integration Test Todo");
     expect(newTodo).toBeInTheDocument();
     expect(newTodo).toHaveStyle("text-decoration: none");
 
-    // Toggle the todo to completed
-    await user.click(newTodo);
+    // Toggle the todo to completed using fireEvent
+    fireEvent.click(newTodo);
     expect(newTodo).toHaveStyle("text-decoration: line-through");
 
-    // Toggle back to incomplete
-    await user.click(newTodo);
+    // Toggle back to incomplete using fireEvent
+    fireEvent.click(newTodo);
     expect(newTodo).toHaveStyle("text-decoration: none");
 
-    // Delete the todo
+    // Delete the todo using fireEvent
     const deleteButtons = screen.getAllByText("Delete");
     const lastDeleteButton = deleteButtons[deleteButtons.length - 1];
-    await user.click(lastDeleteButton);
+    fireEvent.click(lastDeleteButton);
 
     // Verify todo was deleted
     expect(screen.queryByText("Integration Test Todo")).not.toBeInTheDocument();
